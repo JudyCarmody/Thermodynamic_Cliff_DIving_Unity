@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
-{
+public class Movement : MonoBehaviour{
     // Private Variables
     const float groundCheckRadius = 0.15f;
     const float overheadCheckRadius = 0.15f;
