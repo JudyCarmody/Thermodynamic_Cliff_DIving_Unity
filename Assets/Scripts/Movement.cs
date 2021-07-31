@@ -30,6 +30,8 @@ public class Movement : MonoBehaviour{
     public float speed = 1;
 
     void Update(){
+        if(CanMove() == false){ return; }
+
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
         // Running
@@ -61,6 +63,12 @@ public class Movement : MonoBehaviour{
     void FixedUpdate(){
         GroundCheck();
         Move(horizontalValue, jump, crouchPressed);
+    }
+
+    bool CanMove(){
+        bool canMove = true;
+        if(FindObjectOfType<Interactions>().isExamining){ canMove = false; }
+        return canMove;
     }
 
     // Check if player is on the ground

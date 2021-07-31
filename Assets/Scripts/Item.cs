@@ -1,26 +1,32 @@
-//using System.Diagnostics;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 
 public class Item : MonoBehaviour{
-    public enum InteractionType{ NONE, PickUp}
-    public InteractionType type;
-
+    public enum InteractionType{ NONE, PickUp, Examine}
+    public InteractionType interactionType;
+    public List<GameObject> items;
+    [Header("Examine")]
+    public string descriptionText;
+    public Sprite image;
     private void Reset(){
         GetComponent<Collider2D>().isTrigger = true;
         gameObject.layer = 9; // Layer 9 is Item layer
     }
     
     public void Interact(){
-        switch(type){
+        switch(interactionType){
             case InteractionType.PickUp:
-                Debug.Log("PickUp");
+                FindObjectOfType<Interactions>().PickUpItem(gameObject);
+                gameObject.SetActive(false);
+                break;
+            case InteractionType.Examine:
+                FindObjectOfType<Interactions>().ExamineItem(this);
                 break;
             default:
                 break;
         }
     }
-
 }
