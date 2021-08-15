@@ -36,10 +36,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Interactions.cs" />
-     <Compile Include="Assets\Scripts\Item.cs" />
+     <Compile Include="Assets\Scripts\InventorySystem.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/oller/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -261,12 +262,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>/home/oller/Unity/Hub/Editor/Thermodynamic Cliff Diving/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-        <HintPath>/home/oller/Unity/Hub/Editor/2020.3.14f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-        <HintPath>/home/oller/Unity/Hub/Editor/2020.3.14f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>/home/oller/Unity/Hub/Editor/2020.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

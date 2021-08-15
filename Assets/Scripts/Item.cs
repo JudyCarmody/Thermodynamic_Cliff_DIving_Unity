@@ -7,8 +7,7 @@ using UnityEngine;
 public class Item : MonoBehaviour{
     public enum InteractionType{ NONE, PickUp, Examine}
     public InteractionType interactionType;
-    public List<GameObject> items;
-    [Header("Examine")]
+    public List<GameObject> items = new List<GameObject>();
     public string descriptionText;
     public Sprite image;
     private void Reset(){
@@ -19,6 +18,7 @@ public class Item : MonoBehaviour{
     public void Interact(){
         switch(interactionType){
             case InteractionType.PickUp:
+                //FindObjectOfType<InventorySystem>().PickUpItem(gameObject);
                 FindObjectOfType<Interactions>().PickUpItem(gameObject);
                 gameObject.SetActive(false);
                 break;

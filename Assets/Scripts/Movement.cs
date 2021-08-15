@@ -48,8 +48,8 @@ public class Movement : MonoBehaviour{
         else if(Input.GetButtonUp("Jump")){ jump = false; }
 
         // Crouch
-        if(Input.GetKeyDown(KeyCode.DownArrow)){ crouchPressed = true; }
-        else if(Input.GetKeyUp(KeyCode.DownArrow)){ crouchPressed = false; }
+        if(Input.GetButtonDown("Crouch")){ crouchPressed = true; }
+        else if(Input.GetButtonUp("Crouch")){ crouchPressed = false; }
 
         // Y Velocity
         animator.SetFloat("yVelocity", rigidBody.velocity.y);
@@ -65,9 +65,11 @@ public class Movement : MonoBehaviour{
         Move(horizontalValue, jump, crouchPressed);
     }
 
+    // When overlays are shown, restrict movement
     bool CanMove(){
         bool canMove = true;
         if(FindObjectOfType<Interactions>().isExamining){ canMove = false; }
+        if(FindObjectOfType<InventorySystem>().isOpen){ canMove = false; }
         return canMove;
     }
 
@@ -83,7 +85,7 @@ public class Movement : MonoBehaviour{
         // If player is NOT grounded, and
         // If Y Velocity is greater than OR less than 0, set jump animation boolean to TRUE
         if(isGrounded == false){
-            if(rigidBody.velocity.y > 1 || rigidBody.velocity.y < 1){ animator.SetBool("Jump", true); }
+            if(rigidBody.velocity.y > 1 || rigidBody.velocity.y < 0.1){ animator.SetBool("Jump", true); }
         }
     }
 

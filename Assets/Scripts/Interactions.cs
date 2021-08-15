@@ -16,9 +16,9 @@ public class Interactions : MonoBehaviour{
     public GameObject examineWindow;
     public Image examineImage;
     public Text examineText;
-    public List<GameObject> pickedItems = new List<GameObject>();
     public bool isExamining;
-    
+    [Header("Other")]
+    public List<GameObject> pickUpItems = new List<GameObject>();
     void Update(){
         if(DetectObject()){
             if(InteractInput()){
@@ -41,9 +41,6 @@ public class Interactions : MonoBehaviour{
             return true;
         }
     }
-
-    public void PickUpItem(GameObject item){ pickedItems.Add(item); }
-
     public void ExamineItem(Item item){
         if(isExamining){
             // Hide Examine Window
@@ -59,4 +56,6 @@ public class Interactions : MonoBehaviour{
             isExamining = true;
         }
     }
+
+    public void PickUpItem(GameObject item){ pickUpItems.Add(item); }
 }
