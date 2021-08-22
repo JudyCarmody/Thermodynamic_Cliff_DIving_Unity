@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D))]
 
 public class Item : MonoBehaviour{
-    public enum InteractionType{ NONE, PickUp, Examine }
+    public enum InteractionType{ NONE, PickUp }
     public enum ItemType{ Static, Consumable }
     [Header("General Attribues")]
     public InteractionType interactionType;
@@ -27,9 +27,6 @@ public class Item : MonoBehaviour{
             case InteractionType.PickUp:
                 FindObjectOfType<InventorySystem>().PickUpItem(gameObject);
                 gameObject.SetActive(false);
-                break;
-            case InteractionType.Examine:
-                FindObjectOfType<Interactions>().ExamineItem(this);
                 break;
             default:
                 break;

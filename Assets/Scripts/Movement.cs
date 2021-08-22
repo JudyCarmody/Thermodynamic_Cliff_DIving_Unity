@@ -62,7 +62,6 @@ public class Movement : MonoBehaviour{
     // When overlays are shown, restrict movement
     bool CanMove(){
         bool canMove = true;
-        if(FindObjectOfType<Interactions>().isExamining){ canMove = false; }
         if(FindObjectOfType<InventorySystem>().isOpen){ canMove = false; }
         if(isDead){ canMove = false; }
         return canMove;

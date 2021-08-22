@@ -13,11 +13,6 @@ public class Interactions : MonoBehaviour{
     public Transform detectionPoint;
     public LayerMask detectionLayer;
     public GameObject detectedObject;
-    [Header("Examine Parameters")]
-    public GameObject examineWindow;
-    public Image examineImage;
-    public Text examineText;
-    public bool isExamining;
 
     void Update(){
         if(DetectObject()){
@@ -39,21 +34,6 @@ public class Interactions : MonoBehaviour{
         else{
             detectedObject = obj.gameObject;
             return true;
-        }
-    }
-    public void ExamineItem(Item item){
-        if(isExamining){
-            // Hide Examine Window
-            examineWindow.SetActive(false);
-            isExamining = false;
-        }
-
-        else{
-            // Show Examine Window
-            examineImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
-            examineText.text = item.descriptionText;
-            examineWindow.SetActive(true);
-            isExamining = true;
         }
     }
 }

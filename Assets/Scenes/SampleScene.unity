@@ -4082,7 +4082,7 @@ MonoBehaviour:
   - {fileID: 617845520}
   - {fileID: 1716438275}
   - {fileID: 104755486}
-  ui_Description_Window: {fileID: 0}
+  ui_Description_Window: {fileID: 322991840}
   description_Image: {fileID: 1478331102}
   description_Name: {fileID: 1706216525}
   description_Text: {fileID: 1487268162}
@@ -6217,7 +6217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.9000244, y: 0.3999939}
+  m_AnchoredPosition: {x: -0.9000244, y: 0.4000244}
   m_SizeDelta: {x: 70, y: 123.14}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1376230092
