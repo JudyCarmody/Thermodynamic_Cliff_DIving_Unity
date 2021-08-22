@@ -18,13 +18,14 @@ public class Movement : MonoBehaviour{
     float jumpPower = 50;
     float runSpeedModifier = 3;
     float speedMultiplier = 100;
-    float crouchSpeedModifier = 0.2f;
+    float crouchSpeedModifier = 0.3f;
 
     bool facingRight = true;
     bool isRunning;
     bool isGrounded;
     bool jump;
     bool crouchPressed;
+    bool isDead;
 
     // Public Variables
     public float speed = 1;
@@ -46,10 +47,6 @@ public class Movement : MonoBehaviour{
         }
         else if(Input.GetButtonUp("Jump")){ jump = false; }
 
-        // Crouch
-        if(Input.GetButtonDown("Crouch")){ crouchPressed = true; }
-        else if(Input.GetButtonUp("Crouch")){ crouchPressed = false; }
-
         // Y Velocity
         animator.SetFloat("yVelocity", rigidBody.velocity.y);
     }
@@ -69,6 +66,7 @@ public class Movement : MonoBehaviour{
         bool canMove = true;
         if(FindObjectOfType<Interactions>().isExamining){ canMove = false; }
         if(FindObjectOfType<InventorySystem>().isOpen){ canMove = false; }
+        if(isDead){ canMove = false; }
         return canMove;
     }
 
@@ -89,17 +87,8 @@ public class Movement : MonoBehaviour{
     }
 
     void Move(float direction, bool jumpFlag, bool crouchFlag){
-        #region Crouch and Jump
+        #region Jump
         if(isGrounded){
-            // Crouch
-                //Overhead Collision Check
-            if(!crouchFlag){
-                if(Physics2D.OverlapCircle(overheadCheckCollider.position, overheadCheckRadius, groundLayer)){ crouchFlag = true; }
-            }
-
-                // Enable / Disable Crouch
-            if(crouchFlag){ standingCollider.enabled = !crouchFlag;}
-
             // Jump
             if(jumpFlag){
                 isGrounded = false;
@@ -107,9 +96,6 @@ public class Movement : MonoBehaviour{
                 rigidBody.AddForce(new Vector2(0f, jumpPower));
             }
         }
-
-            // Crouching and Jump Animations
-        animator.SetBool("Crouch", crouchFlag);
         #endregion
 
         #region Speed / Velocity
@@ -138,5 +124,10 @@ public class Movement : MonoBehaviour{
             // Walking/Running Animation
         animator.SetFloat("xVelocity", Mathf.Abs(rigidBody.velocity.x));
         #endregion
+    }
+
+    public void Die(){
+        isDead = true;
+        FindObjectOfType<LevelManager>().Restart();
     }
 }

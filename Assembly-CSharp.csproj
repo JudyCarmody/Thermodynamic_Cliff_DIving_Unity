@@ -36,13 +36,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\MoveCount.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\InventorySystem.cs" />
+     <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Interactions.cs" />
-     <Compile Include="Assets\Scripts\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\MoveCount.cs" />
+     <Compile Include="Assets\Scripts\LevelManager.cs" />
      <None Include="Assets\Sprites\SimplePixelUI\fonts\Font2\license.txt" />
      <None Include="Assets\Sprites\SimplePixelUI\fonts\Font1\license.txt" />
      <None Include="Assets\Sprites\SimplePixelUI\fonts\Font1\readme.txt" />
