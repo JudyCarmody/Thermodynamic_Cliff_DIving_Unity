@@ -15,16 +15,14 @@ public class Movement : MonoBehaviour{
     [SerializeField]LayerMask groundLayer;
 
     float horizontalValue;
-    float jumpPower = 50;
+    float jumpPower = 75;
     float runSpeedModifier = 3;
     float speedMultiplier = 100;
-    float crouchSpeedModifier = 0.3f;
 
     bool facingRight = true;
     bool isRunning;
     bool isGrounded;
     bool jump;
-    bool crouchPressed;
     bool isDead;
 
     // Public Variables
@@ -58,7 +56,7 @@ public class Movement : MonoBehaviour{
 
     void FixedUpdate(){
         GroundCheck();
-        Move(horizontalValue, jump, crouchPressed);
+        Move(horizontalValue, jump);
     }
 
     // When overlays are shown, restrict movement
@@ -77,7 +75,15 @@ public class Movement : MonoBehaviour{
         if(colliders.Length > 0){
             isGrounded = true;
             animator.SetBool("Jump", !isGrounded);
+
+            // Moving Platform Check, parent the platform to this
+            foreach(var c in colliders){
+                if(c.tag == "MovingPlatform"){
+                    transform.parent = c.transform;
+                }
+            }
         }
+        else{ transform.parent = null; }
 
         // If player is NOT grounded, and
         // If Y Velocity is greater than OR less than 0, set jump animation boolean to TRUE
@@ -86,7 +92,7 @@ public class Movement : MonoBehaviour{
         }
     }
 
-    void Move(float direction, bool jumpFlag, bool crouchFlag){
+    void Move(float direction, bool jumpFlag){
         #region Jump
         if(isGrounded){
             // Jump
@@ -102,7 +108,6 @@ public class Movement : MonoBehaviour{
         // Speed
         float xVal = direction * speed * speedMultiplier * Time.fixedDeltaTime;
         if(isRunning){ xVal *= runSpeedModifier; }
-        if(crouchPressed){ xVal *= crouchSpeedModifier; }
         Vector2 targetVelocity = new Vector2(xVal, rigidBody.velocity.y);
         rigidBody.velocity = targetVelocity;
         #endregion
