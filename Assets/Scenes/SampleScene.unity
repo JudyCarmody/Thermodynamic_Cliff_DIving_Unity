@@ -3659,7 +3659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 212, y: -101.1}
+  m_AnchoredPosition: {x: 212, y: -101.100006}
   m_SizeDelta: {x: 65.54, y: 25.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &748877424
@@ -4230,11 +4230,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855265252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c6a2d73ffd60be00bc2eb8e6e254f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnsTaken: 0
+  turnsStart: 25
 --- !u!114 &855265263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4247,6 +4249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6313c93909bb0068eca25e50b8dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarFill: {fileID: 1094298235}
+  health: 100
 --- !u!1 &855350756
 GameObject:
   m_ObjectHideFlags: 0
@@ -10163,7 +10167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.27, y: -99.853}
+  m_AnchoredPosition: {x: 94.26999, y: -99.853}
   m_SizeDelta: {x: 147.63, y: 23.076}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851086238
