@@ -13,12 +13,12 @@ public class Interactions : MonoBehaviour{
     public Transform detectionPoint;
     public LayerMask detectionLayer;
     public GameObject detectedObject;
+    [Header("Examine Parameters")]
     public GameObject examineWindow;
     public Image examineImage;
     public Text examineText;
     public bool isExamining;
-    [Header("Other")]
-    public List<GameObject> pickUpItems = new List<GameObject>();
+
     void Update(){
         if(DetectObject()){
             if(InteractInput()){
@@ -56,6 +56,4 @@ public class Interactions : MonoBehaviour{
             isExamining = true;
         }
     }
-
-    public void PickUpItem(GameObject item){ pickUpItems.Add(item); }
 }

@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour{
     float jumpPower = 50;
     float runSpeedModifier = 3;
     float speedMultiplier = 100;
-    float crouchSpeedModifier = 0.3f;
+    float crouchSpeedModifier = 0.2f;
 
     bool facingRight = true;
     bool isRunning;
@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour{
 
     void Update(){
         if(CanMove() == false){ return; }
-
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
         // Running
