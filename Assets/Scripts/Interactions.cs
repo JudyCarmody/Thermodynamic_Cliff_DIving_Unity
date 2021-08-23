@@ -6,10 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Interactions : MonoBehaviour{
     private const float detectionRadius = 0.2f;
-
     public Transform detectionPoint;
     public LayerMask detectionLayer;
     public GameObject detectedObject;

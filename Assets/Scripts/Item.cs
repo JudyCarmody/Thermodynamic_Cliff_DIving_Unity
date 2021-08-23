@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +10,9 @@ public class Item : MonoBehaviour{
     [Header("General Attribues")]
     public InteractionType interactionType;
     public ItemType itemType;
-    public List<GameObject> items = new List<GameObject>();
     public string descriptionText;
     public Sprite image;
+    public bool stackable;
     [Header("Events")]
     public UnityEvent consumeEvent;
 
@@ -25,10 +24,12 @@ public class Item : MonoBehaviour{
     public void Interact(){
         switch(interactionType){
             case InteractionType.PickUp:
+                if(!FindObjectOfType<InventorySystem>().CanPickUp()){ return; }
                 FindObjectOfType<InventorySystem>().PickUpItem(gameObject);
                 gameObject.SetActive(false);
                 break;
             default:
+                Debug.Log("NULL ITEM");
                 break;
         }
     }
