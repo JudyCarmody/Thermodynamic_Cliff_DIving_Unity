@@ -63,6 +63,7 @@ public class Movement : MonoBehaviour{
     bool CanMove(){
         bool canMove = true;
         if(FindObjectOfType<InventorySystem>().isOpen){ canMove = false; }
+        else if(FindObjectOfType<LawsDefinitions>().isOpen){ canMove = false; }
         if(isDead){ canMove = false; }
         return canMove;
     }

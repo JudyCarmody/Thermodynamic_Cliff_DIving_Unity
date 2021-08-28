@@ -17,7 +17,6 @@ public class InventorySystem : MonoBehaviour{
         }
     }
     
-    const int MAXSTACK = 5;
     [Header("General Fields")]
     public List<InventoryItem> inventoryItems = new List<InventoryItem>();
     public bool isOpen;
@@ -35,31 +34,16 @@ public class InventorySystem : MonoBehaviour{
     public void PickUpItem(GameObject item){
         if(item.GetComponent<Item>().stackable){  // item IS stackable
             InventoryItem existingItem = inventoryItems.Find(x => x.itemObj.name == item.name); // does this item exist in inventory?
-            if(existingItem != null){ // item DOES exist in inventory,
-                if(existingItem.stack == MAXSTACK){ return; }
-                else{ existingItem.stack++; } // else, if stack not maxed, add one to stack.
-            }
-            else{   // item DOES NOT exist in inventory, add to inventory
+            if(existingItem != null){ existingItem.stack++; } // item DOES exist in inventory, add to stack
+            else{   // else, add to list
                 InventoryItem i = new InventoryItem(item);
                 inventoryItems.Add(i);
             }
         }
-        else{ // item is NOT stackable, add to inventory
-            InventoryItem i = new InventoryItem(item);
-            inventoryItems.Add(i);
-        }
-        /*if(item.GetComponent<Item>().stackable){
-            InventoryItem existingItem = inventoryItems.Find(x => x.itemObj.name == item.name);
-            if(existingItem != null){ existingItem.stack++; }
-            else{
-                InventoryItem i = new InventoryItem(item);
-                inventoryItems.Add(i);
-            }
-        }
-        else{
+        else{   // if item is NOT in inventory, add to list
             InventoryItem i = new InventoryItem(item);
             inventoryItems.Add(i);            
-        }*/
+        }
         Update_UI();
     }
 
@@ -90,7 +74,7 @@ public class InventorySystem : MonoBehaviour{
     #region Show and Hide item descriptions in inventory
     public void ShowDescription(int id){
         description_Image.sprite = items_Images[id].sprite;
-        if(inventoryItems[id].stack ==1 ){ description_Name.text = inventoryItems[id].itemObj.name; }
+        if(inventoryItems[id].stack == 1 ){ description_Name.text = inventoryItems[id].itemObj.name; }
         else{ description_Name.text = inventoryItems[id].itemObj.name + " x" + inventoryItems[id].stack; }
         description_Text.text = inventoryItems[id].itemObj.GetComponent<Item>().descriptionText;
 
