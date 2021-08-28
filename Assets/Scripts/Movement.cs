@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour{
     }
 
     // Check if player is on the ground
-    void GroundCheck(){
+    public void GroundCheck(){
         isGrounded = false; // default, stops here, except when actually on ground
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
         if(colliders.Length > 0){
