@@ -1,10 +1,9 @@
-using System.Net.Sockets;
-using System.Security.Cryptography;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SceneManagement;
 
 public class MoveCount : MonoBehaviour{
     public int turnCount = 0;
