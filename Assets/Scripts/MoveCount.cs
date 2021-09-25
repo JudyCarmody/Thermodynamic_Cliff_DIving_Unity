@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Debug = UnityEngine.Debug;
 using UnityEngine.SceneManagement;
 
 public class MoveCount : MonoBehaviour{
@@ -23,5 +22,9 @@ public class MoveCount : MonoBehaviour{
         MOVE COUNT RESET POWER-UP
     */
 
-    public void Update(){ if(Input.GetButtonDown("Jump")){ CountMove(); } }
+    public void Update(){
+        if(Input.GetButtonDown("Jump")){ CountMove(); }
+        if(Input.GetKeyDown(KeyCode.DownArrow)){ CountMove(); }
+        if(Input.GetButtonDown("Horizontal")){ CountMove(); }
+    }
 }

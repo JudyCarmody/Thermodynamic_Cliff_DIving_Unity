@@ -4,7 +4,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour{
     public List<Transform> points;
     public Transform platform;
-    public float speed = 0.2f;
+    public float speed = 0.05f;
     int goalPoint = 0;
 
     private void Update(){ MoveToNextPoint(); }

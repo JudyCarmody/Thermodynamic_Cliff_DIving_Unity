@@ -8,6 +8,7 @@ using Debug = UnityEngine.Debug;
 public class HealthBar : MonoBehaviour{
     public Image healthBarFill;
     public float health = 100;
+    public int healthLoss = 5; // Amount of health lost when Jump is pressed.
 
     public void LoseHealth(int h){
         health -= h;
@@ -34,5 +35,5 @@ public class HealthBar : MonoBehaviour{
     full refill less than 20%
     */
 
-    private void Update(){ if(Input.GetButtonUp("Jump")){ LoseHealth(1); } }
+    private void Update(){ if(Input.GetButtonUp("Jump")){ LoseHealth(healthLoss); } }
 }

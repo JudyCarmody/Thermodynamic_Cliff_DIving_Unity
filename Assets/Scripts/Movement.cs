@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
-    // Private Variables
     const float groundCheckRadius = 0.15f;
     const float overheadCheckRadius = 0.15f;
-
-    Rigidbody2D rigidBody;
+    
     Animator animator;
+    Rigidbody2D rigidBody;
     [SerializeField]Collider2D standingCollider;
-    [SerializeField]Transform overheadCheckCollider;
-    [SerializeField]Transform groundCheckCollider;
     [SerializeField]LayerMask groundLayer;
+    [SerializeField]Transform groundCheckCollider;
+    [SerializeField]Transform overheadCheckCollider;
 
     float horizontalValue;
-    float jumpPower = 75;
+    float jumpPower = 25;
     float runSpeedModifier = 3;
     float speedMultiplier = 100;
 
@@ -25,20 +24,13 @@ public class Movement : MonoBehaviour{
     bool jump;
     bool isDead;
 
-    // Public Variables
     public float speed = 1;
 
     void Update(){
         if(CanMove() == false){ return; }
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
-        // Running
-            // press Left Shift to run
-        if(Input.GetKeyDown(KeyCode.LeftShift)){isRunning = true;}
-        if(Input.GetKeyUp(KeyCode.LeftShift)){isRunning = false;}
-
-        // Jump
-            // press space bar to jump
+        // Jump     press space bar to jump
         if(Input.GetButtonDown("Jump")){ 
             animator.SetBool("Jump", true); 
             jump = true;    
@@ -46,7 +38,7 @@ public class Movement : MonoBehaviour{
         else if(Input.GetButtonUp("Jump")){ jump = false; }
 
         // Y Velocity
-        animator.SetFloat("yVelocity", rigidBody.velocity.y);
+        //animator.SetFloat("yVelocity", rigidBody.velocity.y);
     }
 
     void Awake(){
@@ -78,25 +70,17 @@ public class Movement : MonoBehaviour{
             animator.SetBool("Jump", !isGrounded);
 
             // Moving Platform Check, parent the platform to this
-            foreach(var c in colliders){
-                if(c.tag == "MovingPlatform"){
-                    transform.parent = c.transform;
-                }
-            }
+            foreach(var c in colliders){ if(c.tag == "MovingPlatform"){ transform.parent = c.transform; } }
         }
         else{ transform.parent = null; }
 
-        // If player is NOT grounded, and
-        // If Y Velocity is greater than OR less than 0, set jump animation boolean to TRUE
-        if(isGrounded == false){
-            if(rigidBody.velocity.y > 1 || rigidBody.velocity.y < 0.1){ animator.SetBool("Jump", true); }
-        }
+        // If player is NOT grounded, and if Y Velocity is greater than OR less than 0, set jump animation boolean to TRUE
+        if(isGrounded == false){ if(rigidBody.velocity.y > 1 || rigidBody.velocity.y < 0.1){ animator.SetBool("Jump", true); } }
     }
 
     void Move(float direction, bool jumpFlag){
         #region Jump
         if(isGrounded){
-            // Jump
             if(jumpFlag){
                 isGrounded = false;
                 jumpFlag = false;
@@ -131,6 +115,8 @@ public class Movement : MonoBehaviour{
         animator.SetFloat("xVelocity", Mathf.Abs(rigidBody.velocity.x));
         #endregion
     }
+
+
 
     public void Die(){
         isDead = true;
